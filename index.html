@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Ret title herunder til din egen, så det ses i browseren-->
+  <title>DNA Augmented reality</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+   <!-- Use A-frame -->
+   <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    
+   <!-- Adds environments -->
+   <script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
+   
+   <!-- Adds support for Oculus/Meta thumbstick controls for movement -->
+   <script src="https://gftruj.github.io/webzamples/aframe/controls/oculus-thumbstick-controls.js"></script>
+  
+	<style>
+		@media only screen and (min-width: 900px) {
+		  model-viewer {
+			  width: 800px;
+			  height: 600px;
+			}
+		}
+		@media only screen and (max-width: 800px) {
+		  model-viewer {
+			  width: 100%;
+			  height: 600px;
+			}
+		}
+		showModel {
+			align-content: flex-start;
+		}
+	
+</style>
+</head>
+<body>
+<!-- du kan rette titlen herunder, så det bliver din egen webside -->
+<div class="container-fluid bg-success text-white text-center">
+  <h1 id="myhead">DNA</h1>
+</div>
+
+
+    <div id="showModel">
+
+  
+        <!-- start vr -->
+					
+        <a-scene shadow="type: pcfsoft;">
+
+            <a-assets>
+                <a-asset-item id="dna-model" src="models/dna.glb" crossOrigin="anonymous"></a-asset-item> 
+              </a-assets>
+      
+            <!-- Environment -->
+            <a-entity environment="preset: checkerboard; fog: 0.8; dressingColor: purple; dressing: towers; dressingAmount: 500; shadow: true; lightPosition: 0 5 -5"></a-entity>
+            
+             <a-entity shadow="cast:true; receive:true"> <!-- Adds shadows for objects inside -->
+               
+             <a-entity scale="1 .7 1"> <!-- Squash the pumpkin vertically -->  
+               
+             
+            
+            </a-entity>
+            
+            <a-gltf-model src="#dna-model" position="0 -3 -2" rotation="0 -30 20" scale="0.003 0.003 0.003" class="rotateTarget"
+            event-set__1="_event: click;"
+            animation__rotate="property: rotation; dir: forward; dur: 8000;
+                                           easing: easeInSine; loop: false; from: 0 -30 0; to: 0 330 0;
+                                           startEvents:click">
+                                           </a-gltf-model>
+            
+
+            </a-entity>
+
+            <a-entity light="type: directional; color: #FFF; intensity: 0.6" position="-0.5 1 1"></a-entity>
+            <a-entity light="type: directional; color: #FFF; intensity: 0.6" position="2 0 1"></a-entity>
+          
+            <!-- Dim ambient lighting. -->
+          <a-light type="ambient" color="#fff"></a-light>
+            
+          
+            <!-- Controls for Meta quest and similar headsets -->
+            <a-entity id="rig">
+              <a-camera position="0 1.6 0"></a-camera>
+              <a-entity oculus-touch-controls="hand: left" ></a-entity>
+              <a-entity oculus-touch-controls="hand: right" oculus-thumbstick-controls></a-entity>
+            </a-entity>
+      
+          </a-scene>
+        <!-- end vr -->
+  
+</div>
+
+    
+  
+</body>
+</html>
